@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% load static %}
+    <style type="text/css" media="screen">
+    .nav-item a {
+        color: white;
+        font-weight: bold;
+    }
+
+    .navbar li a:hover {
+        background-color: white;
+        color: black;
+        border: none;
+        transition: 0.5s ease;
+    }
+
+    .navbar-toggler-icon {
+        background-color:white;
+        color: white;
+    }
+
+    .navbar {
+        background-color: black;
+        padding: 15px;
+    }
+    </style>
+    <title>{% block title %}{% endblock title %}</title>
+    <nav class="navbar navbar-expand-lg" style="background-color: black;">
+        <a class="navbar-brand" href="/"><img src="/media/blog/images/lo.png" class="img-fluid" style="width:100px; height:40px;" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link mr-2" href="/"><i class="fa fa-home" style="margin-right:3px;" aria-hidden="true"></i>Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link mr-2" href="/about"><i class="fa fa-users" style="margin-right:3px;" aria-hidden="true"></i>About Us</a>
+                </li>
+                <li class="nav-item {% block blogactive %} {% endblock blogactive %}">
+                    <a class="nav-link mr-2" href="/blog" tabindex="-1" aria-disabled="true"><i class="fa fa-file " style="margin-right:3px;" aria-hidden="true"></i>
+                        Blog</a>
+                </li>
+                <li class="nav-item {% block contactactive %} {% endblock contactactive %}">
+                    <a class="nav-link" href="/contact" tabindex="-1" aria-disabled="true"><i class="fa fa-phone" style="margin-right:3px;" aria-hidden="true"></i>Contact</a>
+                </li>
+            </ul>
+            <form method="get" action="/search" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query">
+                <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid white;"><i class="fa fa-search" aria-hidden="true" style="color:darkgreen;"></i>
+                </button>
+            </form>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left:10px;margin-right: 10px;">
+                        <i class="fa fa-user-o" aria-hidden="true" style="margin-right: 5px;"></i>{{request.user}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/logout" style="background-color:; color:black; font-weight: bold;"><i class="fa fa-sign-out" aria-hidden="true" style="margin-right: 5px;"></i>Log Out</a>
+                    </div>
+                </li>
+            </ul>
+            {% else %}
+            <!-- Button trigger modal -->
+            <button type="button" as style="border-radius:7px; border:2px solid white; padding: 3px 8px 3px 8px; margin: 5px; margin-left: 10px; transition: 0.5s ease; background-color: transparent;color:white; font-weight: bold;" data-toggle="modal" data-target="#signinModal"><i class="fa fa-sign-in" aria-hidden="true" style="margin-right: 5px;"></i>Sign in
+            </button>
+            <button type="button" class="" style="border-radius:7px; border:2px solid white; padding: 3px 8px 3px 8px; margin: 5px; transition: 0.5s ease;background-color: transparent;color:white;font-weight: bold;" data-toggle="modal" data-target="#signupModal"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 5px;"></i>Sign up
+            </button>
+            {% endif %}
+        </div>
+    </nav>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong><i class="fa fa-commenting-o mr-3 " aria-hidden="true"></i>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    <!-- signup Modal -->
+    <div class="modal fade" style="background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0)),url('/media/blog/images/sign.jpg'); background-repeat: none; background-position:center; background-size: 100%,100%;" id="signupModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title align-items-center" id="signupModalTitle"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right:5px;"></i>Sign Up For Free!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/signup" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <label for="username" style=""><i class="fa fa-user-circle" aria-hidden="true" style="margin-right: 5px;"></i>UserName</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="LowerCase & Alphanumeric" aria-describedby="" style="border-radius: 20px; border:1px solid black;">
+                        </div>
+                        <div class="form-group">
+                            <label for="fname">First Name</label>
+                            <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" style="border-radius: 20px; border:1px solid black" ;>
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" style="border-radius: 20px; border:1px solid black;">
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="fa fa-envelope-o" aria-hidden="true" style="margin-right: 5px;"></i>Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Name@gmail.com" style="border-radius: 20px; border:1px solid black;">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass1"><i class="fa fa-lock" aria-hidden="true" style="margin-right: 5px;"></i>Password</label>
+                            <input type="password" class="form-control" id="pass1" name="pass1" placeholder="****" style="border-radius: 20px; border:1px solid black;">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass2"><i class="fa fa-lock" aria-hidden="true" style="margin-right: 5px;"></i>Retype-Password</label>
+                            <input type="password" class="form-control" id="pass2" name="pass2" placeholder="****" style="border-radius: 20px; border:1px solid black;">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Accept Our Term And Policy</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- signnin Modal -->
+    <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signinModalTitle">Login To Your Account!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/login" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <label for="username"><i class="fa fa-user-circle" aria-hidden="true" style="margin-right: 5px;"></i>Username</label>
+                            <input type="text" class="form-control" id="loginusername" name="loginusername" style="border-radius: 20px; border:1px solid black;">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"><i class="fa fa-lock" aria-hidden="true" style="margin-right: 5px;"></i>Enter Password</label>
+                            <input type="password" class="form-control" id="loginpass" name="loginpass" placeholder="Enter Your Password" style="border-radius: 20px; border:1px solid black;">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block body %}
+    {% endblock body %}
+
+    {% block js %}
+    {% endblock js %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </body>
+
+</html>

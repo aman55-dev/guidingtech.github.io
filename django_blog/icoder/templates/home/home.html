@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+{% block js %}
+<script>
+    let previewss = document.getElementsByClassName('preview1');
+    Array.from(previewss).forEach((element) =>{
+        element.innerHTML = element.innerText;
+    });
+</script>
+{% endblock js %}
+<style>
+    . a:hover {
+    background-color: red;
+}
+</style>
+<!-- jumbotron image  -->
+<div class="container-fluid mx-0" style="padding-left: 0px; padding-right: 0;">
+    <div class="jumbotron" style="background-image:linear-gradient(to right,rgba(0,0,0,0.9),rgba(0,0,0,0)),url('/media/blog/images/home2.jpg'); background-position: center; background-repeat: none; background-size:100%, 100%; background-attachment: fixed;">
+        <h1 class="display-4" style="color:white; font-weight: bold;">Welcome to G.Tech</h1>
+        <p class="lead" style="color:white;">We explain and teach tech­nol­o­gy, solve tech prob­lems and help you make gad­get buy­ing decisions.</p>
+        <hr class="my-4">
+        <p style="color:white;">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a class="btn btn-lg lo" style="border-radius: 20px;  border:2px solid white; background-color:transparent; color:white; font-weight: bold; box-shadow: 2px 0px 5px white;" href="/about" role="button">About Us</a>
+    </div>
+</div>
+<!-- recentle added item fetching from database -->
+<div class="container my-5">
+    <h2 style="color:black; font-weight: bold; margin-top:70px;" class="text-uppercase mb-4"><i class="fa fa-clock-o" aria-hidden="true" style="margin-right:10px;"></i>Recently Added:</h2>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-3 col-lg-3 col-sm-3 col-12">
+            <div class="card" style="width: 18rem; height:380px; border: none;">
+                <img src="/media/{{post.thumbnail}}" class="card-img-top" alt="..." style="height:160px;">
+                <div class="card-body" style="height:200px;">
+                    <h5 class="card-title" style="color:black;">{{post.title}}</h5>
+                    <p class="card-text">
+                        <div class="preview1">{{post.content|safe|truncatechars:150}}</div>
+                    </p>
+                    <a href="/blog/{{post.slug}}" style=" border:1px solid black; border-radius: 10px; padding:7px; box-shadow: 2px 2px 5px black; color:red;">Read More</a>
+                </div>
+            </div>
+        </div> {% endfor %}
+    </div>
+</div>
+</div>
+
+<!-- social media footer and news latter footer -->
+<div class="container-fluid" style="background-color: #e4e4e4; margin-bottom:50px;margin-top:100px; padding: 50px;">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#"><img src="/media/blog/images/fb.png" class="img-fluid" style="height:40px; margin-right: 5px;"></a><b>Facebook</b>
+                </div>
+                <div class="col-md-4">
+                    <a href="#"><img src="/media/blog/images/twitter.png" class="img-fluid" style="height:40px; margin-right: 5px;"></a><b>Twitter</b>
+                </div>
+                <div class="col-md-4">
+                    <a href="#"><img src="/media/blog/images/ins.png" class="img-fluid" style="height:40px; margin-right: 5px;"></a><b>Instagram</b>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <b>
+                <p class="text-muted">Join the Newsletter</p>
+            </b>
+            <b>
+                <p style="color:black;">Get Guiding Tech articles delivered to your inbox.</p>
+            </b>
+            <form method="post" action="/email">{% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="name@gmail.com" style="border-radius: 10px; border:1px solid black;">
+                    <button type="submit" class="btn btn my-3" style="background-color: black; color:white;">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

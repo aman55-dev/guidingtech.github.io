@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock title %}
+{% block body %}
+<div class="container">
+    <div class="jumbotron jumbotron-fluid" style="background-image:linear-gradient(to right,rgba(0,0,0,0.9),rgba(0,0,0,0)),url('/media/blog/images/who.png'); background-position: center; background-repeat: none; background-size:100%, 100%; color:white; height: 200px;">
+        <div class="container">
+            <h1 class="display-4"></h1>
+            <p class="lead text-capitalize text-center"></p>
+        </div>
+    </div>
+</div>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <h5 class="text-capitalize">At <span style="font-size:30px;color:black;">G</span>uiding Tech, we explain and teach technology.</h5>
+            <h5 class="text-capitalize" style="word-spacing: 5px;">Get technical is an all-in-one technical blogging plateform for all kind of technical information about the gadgets . we give knowladge to millions of customer around the globe to empower thereself and choose the right product for theirself with our smart marketing technology, award winning support , and inspiring content.We enable our readers to make better purchase decisions and once they’ve purchased a gadget, we teach them how to use it like a pro. We do this by writing in-depth guides, how-tos, lists, explainers and tips on all kinds of consumer tech topics. gt was founded in 2020 and headquartered in noida, india. we have a team of 15 professional tech advisor. get technical is 100% founder owned and highly profitable.</h5>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <img src="/media/blog/images/nn.png" style="width:100%;height:300px;" alt="">
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-top: 50px; margin-bottom: 70px;">
+    <h2 class="text-center mb-5 text-uppercase" style="color:black; font-weight: bold">Feetured In</h2>
+    <div class="row" style="margin-left:86px;">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+            <img src="/media/blog/images/for.jpg" alt="" style="width:150px; height:auto;">
+        </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+            <img src="/media/blog/images/en.png" alt="" style="width:150px; height:auto; ">
+        </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+            <img src="/media/blog/images/for.jpg" alt="" style="width:150px; height:auto;">
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-top:70px; margin-bottom: 70px;">
+    <h2 class="text-center mb-5 text-uppercase" style="color:black; font-weight: bold">Meet Our Digital Warriors</h2>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row" style="margin-left: 150px;">
+                    <div class="col-lg-4 colmd-4 col-12">
+                        <img src="/media/blog/images/lop.jpg" class="rounded-circle" alt="..." style="height:200px; width:auto; ">
+                        <h4 class="ml-4" style="color:black;">Aman Tiwari</h4>
+                        <h5 class="ml-2 text-muted">Founder and Editor-in-Chief</h5>
+                    </div>
+                    <div class="col-lg-4 colmd-4 col-12">
+                        <img src="/media/blog/images/ni.jpg" class="rounded-circle" alt="..." style="height:200px; width:auto; ">
+                        <h4 class="ml-4" style="color:black;">Nidhi</h4>
+                        <h5 class="ml-4 text-muted">Content Head - Video</h5>
+                    </div>
+                    <div class="col-lg-4 colmd-4 col-12">
+                        <img src="/media/blog/images/anish.jpg" class="rounded-circle" alt="..." style="height:200px; width:auto; ">
+                        <h4 class="ml-4" style="color:black;">Anish Jha</h4>
+                        <h5 class="ml-4 text-muted">Editor</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row" style="margin-left: 150px;">
+                    <div class="col-lg-4 colmd-4 col-12">
+                        <img src="/media/blog/images/nit.jpg" class="rounded-circle" alt="..." style="height:200px; width:auto; ">
+                        <h4 class="ml-4" style="color:black;">Nitin Pal</h4>
+                        <h5 class="ml-4 text-muted">Staff Writer</h5>
+                    </div>
+                    <div class="col-lg-4 colmd-4 col-12">
+                        <img src="/media/blog/images/bj2.jpg" class="rounded-circle" alt="..." style="height:200px; width:auto; ">
+                        <h4 class="ml-4" style="color:black;">Himanshu Singh</h4>
+                        <h5 class="ml-4 text-muted">Video Editor</h5>
+                    </div>
+                    <div class="col-lg-4 colmd-4 col-12">
+                        <img src="/media/blog/images/vi.jpg" class="rounded-circle" alt="..." style="height:200px; width:auto; ">
+                        <h4 class="ml-4" style="color:black;">Virat Gupta</h4>
+                        <h5 class="ml-4 text-muted">Staff Writer</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" style="background-color: red;" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" style="background-color: red;" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+{% endblock body %}
